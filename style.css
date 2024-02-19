@@ -39,7 +39,6 @@ nav {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   width: 800px;
 }
 
@@ -72,23 +71,36 @@ nav {
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
   padding: 15px 0px;
-  font-size: 20px;
+  font-size: 19px;
 }
 
+.not-read-btn,
 .read-btn,
 .remove-btn {
   border: none;
   width: 80%;
   height: 40px;
   border-radius: 10px;
+  font-size: 16px;
+  transition: background-color 0.15s;
 }
 
-.read-btn {
-  background-color: rgb(247, 127, 127);
+.not-read-btn {
+  background-color: rgb(255, 138, 138);
+}
+
+.not-read-btn:hover {
+  background-color: rgb(240, 93, 93);
+  cursor: pointer;
 }
 
 .remove-btn {
   margin-top: 15px;
+}
+
+.remove-btn:hover {
+  cursor: pointer;
+  background-color: rgb(219, 219, 219);
 }
 
 .p {
@@ -120,5 +132,5 @@ nav {
 .top-buttons:hover,
 #add-book:hover {
   cursor: pointer;
-  background-color: rgb(224, 224, 224);
+  background-color: rgb(255, 239, 239);
 }
