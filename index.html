@@ -17,8 +17,9 @@
       <div id="nav-container">
         <p class="title">library</p>
         <div id="top-buttons">
-          <button class="top-buttons">Account</button>
-          <button class="top-buttons">Log out</button>
+          <button class="top-buttons" id="login">Log in</button>
+          <button class="top-buttons" id="account">Account</button>
+          <button class="top-buttons" id="logout">Logout</button>
         </div>
       </div>
     </nav>
@@ -39,16 +40,16 @@
     <div id="overlay" class="active">
       <form>
         <h3>Add new book</h3>
-        <input type="text" placeholder="Title" />
-        <input type="text" placeholder="Author" />
-        <input type="number" placeholder="Pages" />
+        <input id="title" type="text" placeholder="Title" required />
+        <input id="author" type="text" placeholder="Author" required />
+        <input id="pages" type="number" placeholder="Pages" min="0" required />
         <div class="read-it">
           <label>Have you read it?</label>
-          <input type="checkbox" default="unchecked" />
+          <input id="checkbox" type="checkbox" default="unchecked" />
         </div>
         <button type="submit">Submit</button>
       </form>
     </div>
-    <script src="script.js"></script>
+    <script src="script.js" type="module"></script>
   </body>
 </html>
