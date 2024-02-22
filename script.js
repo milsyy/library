@@ -46,10 +46,14 @@ function Book(title, author, pages, read) {
 const getUser = () => {
   let userFromStorage = getItemsFromStorage("user");
 
-  if (userFromStorage) {
+  if (userFromStorage.length > 0) {
     login.style.display = "none";
     account.style.display = "block";
     logout.style.display = "block";
+  } else {
+    login.style.display = "block";
+    account.style.display = "none";
+    logout.style.display = "none";
   }
 };
 
