@@ -3,6 +3,8 @@ import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
+  signOut,
+  onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"; // Corrected path for auth imports
 
 const firebaseConfig = {
@@ -42,7 +44,25 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
-const loginToGoogle = () => {
+const displayBooks = () => {
+  let booksFromStorage = getBooksFromStorage();
+
+  booksFromStorage.forEach((book) => {
+    addBookLibrary(book);
+  });
+};
+
+const getBooksFromStorage = () => {
+  let booksFromStorage;
+  if (localStorage.getItem("books") === null) {
+    booksFromStorage = [];
+  } else {
+    booksFromStorage = JSON.parse(localStorage.getItem("books"));
+  }
+  return booksFromStorage;
+};
+
+const loginToGoogle = async () => {
   signInWithPopup(auth, provider)
     .then((result) => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -135,6 +155,8 @@ const formSubmitted = (e) => {
 
   myLibrary.push(newBook);
 
+  localStorage.setItem("books", JSON.stringify(myLibrary));
+
   form.reset();
 
   addBookLibrary(newBook);
@@ -160,14 +182,42 @@ const bookClick = (e) => {
   if (e.target.classList.contains("read-btn")) {
     e.target.classList.remove("read-btn");
     e.target.classList.add("not-read-btn");
+    updateStorageItem(e.target.parentElement);
     e.target.textContent = "Not read";
   } else if (e.target.classList.contains("not-read-btn")) {
     e.target.classList.remove("not-read-btn");
     e.target.classList.add("read-btn");
+    updateStorageItem(e.target.parentElement);
     e.target.textContent = "Read";
   } else if (e.target.classList.contains("remove-btn")) {
     e.target.parentElement.remove();
+    removeItemFromStorage(e.target.parentElement);
   }
+};
+
+const updateStorageItem = (book) => {
+  let storageBooks = getBooksFromStorage();
+
+  let objIndex = storageBooks.findIndex(
+    (obj) => `"${obj.title}"` === book.firstChild.textContent
+  );
+  if (!storageBooks[objIndex].read) {
+    storageBooks[objIndex].read = true;
+  } else {
+    storageBooks[objIndex].read = false;
+  }
+  localStorage.setItem("books", JSON.stringify(storageBooks));
+};
+
+const removeItemFromStorage = (book) => {
+  let storageBooks = getBooksFromStorage();
+
+  storageBooks = storageBooks.filter((i) => {
+    let title = `"${i.title}"`;
+    return title !== book.firstChild.textContent;
+  });
+
+  localStorage.setItem("books", JSON.stringify(storageBooks));
 };
 
 accountBg.addEventListener("click", removeAcc);
@@ -177,3 +227,4 @@ overlayDiv.addEventListener("click", removeOverlay);
 login.addEventListener("click", loginToGoogle);
 nav.addEventListener("click", navEvent);
 containerThree.addEventListener("click", bookClick);
+document.addEventListener("DOMContentLoaded", displayBooks);
