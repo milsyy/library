@@ -62,7 +62,7 @@ const getUser = () => {
 
 const displayBooks = () => {
   let booksFromStorage = getItemsFromStorage("books");
-
+  localStorage.clear();
   booksFromStorage.forEach((book) => {
     addBookLibrary(book);
   });
