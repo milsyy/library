@@ -166,6 +166,14 @@ const addBookLibrary = (book) => {
   bookDiv.appendChild(removeBtn);
 
   containerThree.appendChild(bookDiv);
+
+  addBookToStorage(book);
+};
+
+const addBookToStorage = (book) => {
+  let storageBooks = getItemsFromStorage("books");
+  storageBooks.push(book);
+  localStorage.setItem("books", JSON.stringify(storageBooks));
 };
 
 const formSubmitted = (e) => {
@@ -179,8 +187,6 @@ const formSubmitted = (e) => {
   const newBook = new Book(title, author, pages, read);
 
   myLibrary.push(newBook);
-
-  localStorage.setItem("books", JSON.stringify(myLibrary));
 
   form.reset();
 
