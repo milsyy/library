@@ -61,6 +61,15 @@ const displayBooks = () => {
   });
 };
 
+const userSignOut = async () => {
+  signOut(auth).then(() => {
+    login.style.display = "block";
+    account.style.display = "none";
+    logout.style.display = "none";
+    localStorage.removeItem("user");
+  });
+};
+
 const getItemsFromStorage = (item) => {
   let booksFromStorage;
   if (localStorage.getItem(item) === null) {
@@ -233,6 +242,7 @@ containerTwo.addEventListener("click", addBookPress);
 form.addEventListener("submit", formSubmitted);
 overlayDiv.addEventListener("click", removeOverlay);
 login.addEventListener("click", loginToGoogle);
+logout.addEventListener("click", userSignOut);
 nav.addEventListener("click", navEvent);
 containerThree.addEventListener("click", bookClick);
 document.addEventListener("DOMContentLoaded", displayBooks);
