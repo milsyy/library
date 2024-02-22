@@ -35,7 +35,6 @@ const accountBg = document.querySelector("#account-bg");
 let myLibrary = [];
 let userEmail;
 let accountDone = false;
-let id = 0;
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -104,10 +103,8 @@ const addBookPress = (e) => {
 };
 
 const addBookLibrary = (book) => {
-  id += 1;
   const bookDiv = document.createElement("div");
   bookDiv.classList.add("book");
-  bookDiv.setAttribute("id", `book-${id}`);
 
   const titlePara = document.createElement("p");
   titlePara.classList.add("p");

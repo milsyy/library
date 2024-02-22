@@ -32,9 +32,28 @@
     <div id="overlay" class="active">
       <form>
         <h3>Add new book</h3>
-        <input id="title" type="text" placeholder="Title" required />
-        <input id="author" type="text" placeholder="Author" required />
-        <input id="pages" type="number" placeholder="Pages" min="0" required />
+        <input
+          id="title"
+          type="text"
+          placeholder="Title"
+          autocomplete="off"
+          required
+        />
+        <input
+          id="author"
+          type="text"
+          placeholder="Author"
+          autocomplete="off"
+          required
+        />
+        <input
+          id="pages"
+          type="number"
+          placeholder="Pages"
+          min="0"
+          value="0"
+          required
+        />
         <div class="read-it">
           <label>Have you read it?</label>
           <input id="checkbox" type="checkbox" default="unchecked" />
