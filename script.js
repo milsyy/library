@@ -33,6 +33,7 @@ const accountBg = document.querySelector("#account-bg");
 let myLibrary = [];
 let userEmail;
 let accountDone = false;
+let id = 0;
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -83,8 +84,10 @@ const addBookPress = (e) => {
 };
 
 const addBookLibrary = (book) => {
+  id += 1;
   const bookDiv = document.createElement("div");
   bookDiv.classList.add("book");
+  bookDiv.setAttribute("id", `book-${id}`);
 
   const titlePara = document.createElement("p");
   titlePara.classList.add("p");
@@ -153,9 +156,24 @@ const removeAcc = (e) => {
   }
 };
 
+const bookClick = (e) => {
+  if (e.target.classList.contains("read-btn")) {
+    e.target.classList.remove("read-btn");
+    e.target.classList.add("not-read-btn");
+    e.target.textContent = "Not read";
+  } else if (e.target.classList.contains("not-read-btn")) {
+    e.target.classList.remove("not-read-btn");
+    e.target.classList.add("read-btn");
+    e.target.textContent = "Read";
+  } else if (e.target.classList.contains("remove-btn")) {
+    e.target.parentElement.remove();
+  }
+};
+
 accountBg.addEventListener("click", removeAcc);
 containerTwo.addEventListener("click", addBookPress);
 form.addEventListener("submit", formSubmitted);
 overlayDiv.addEventListener("click", removeOverlay);
 login.addEventListener("click", loginToGoogle);
 nav.addEventListener("click", navEvent);
+containerThree.addEventListener("click", bookClick);
