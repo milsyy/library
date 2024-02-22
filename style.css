@@ -58,6 +58,8 @@ form input {
   flex-direction: column;
   width: 100%;
   height: 100%;
+  padding: 0px 20px;
+  box-sizing: border-box;
 }
 
 #container-two {
@@ -75,12 +77,12 @@ form input {
 
 #container-three {
   display: flex;
-  max-width: 1200px;
-  width: 95.8%;
-  margin: 0px 20px;
-  gap: 30px;
   flex-wrap: wrap;
-  padding: 0 20px;
+  justify-content: flex-start;
+  max-width: 1200px;
+  width: 100%;
+  gap: 30px;
+  box-sizing: border-box; /* Ensure padding is included in the width calculation */
 }
 
 #add-book,
@@ -132,12 +134,12 @@ form,
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 31%;
+  width: calc(33.33% - 20px); /* Adjust the width and gap accordingly */
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
-  padding: 15px 0px;
+  padding: 15px;
   font-size: 19px;
-  flex: auto;
+  box-sizing: border-box; /* Ensure padding is included in the width */
 }
 
 .not-read-btn,
@@ -222,9 +224,17 @@ form,
   align-items: center;
 }
 
-@media (max-width: 580px) {
+@media (max-width: 560px) {
+  #container-three {
+    width: 100%;
+  }
   .book {
-    width: 50%;
-    margin: 0px 5px 0px 10px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) and (min-width: 560px) {
+  .book {
+    width: calc(50% - 15px);
   }
 }
