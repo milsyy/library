@@ -49,7 +49,7 @@ form input {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 800px;
+  width: 1200px;
 }
 
 #container {
@@ -70,14 +70,14 @@ form input {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  max-width: 800px;
+  max-width: 1200px;
 }
 
 #container-three {
   display: flex;
-  max-width: 800px;
-  width: 100%;
-  margin: 0 auto;
+  max-width: 1200px;
+  width: 95.8%;
+  margin: 0px 20px;
   gap: 30px;
   flex-wrap: wrap;
   padding: 0 20px;
@@ -109,6 +109,7 @@ form,
 #account,
 #logout {
   display: none;
+  margin-left: 15px;
 }
 
 #top-buttons {
@@ -131,11 +132,12 @@ form,
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 246px;
+  width: 31%;
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
   padding: 15px 0px;
   font-size: 19px;
+  flex: auto;
 }
 
 .not-read-btn,
@@ -196,7 +198,6 @@ form,
   height: 36px;
   width: 75px;
   font-size: 14px;
-  margin-left: 7px;
 }
 .top-buttons,
 #add-book {
@@ -219,4 +220,11 @@ form,
   background-color: rgba(0, 0, 0, 0.514);
   justify-content: center;
   align-items: center;
+}
+
+@media (max-width: 580px) {
+  .book {
+    width: 50%;
+    margin: 0px 5px 0px 10px;
+  }
 }
