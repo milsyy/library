@@ -15,24 +15,27 @@ nav {
 }
 
 form {
-  height: 255px;
-  width: 200px;
+  height: 365px;
+  width: 250px;
   flex-direction: column;
-  gap: 12px;
+  gap: 6px;
   justify-content: center;
   align-items: center;
-  background-color: rgb(207, 207, 207);
-  padding: 15px 25px;
+  background-color: #f0eef1;
+  padding: 25px 25px;
   border-radius: 10px;
 }
 
 form,
 .read-it {
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 h3 {
   margin: 7px 0px;
+  font-size: 28px;
 }
 
 form input {
@@ -42,7 +45,22 @@ form input {
   width: 100%;
   font-size: 14px;
   padding: 0px 10px;
+  margin: 7px 0px;
   letter-spacing: 1px;
+  box-sizing: border-box;
+}
+
+#title,
+#author,
+#pages {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+#checkbox {
+  margin-left: 10px;
+  height: 15px;
+  width: 15px;
 }
 
 #nav-container {
@@ -145,13 +163,22 @@ form,
 .not-read-btn,
 .read-btn,
 .read-btn,
-.remove-btn {
+.remove-btn,
+#submit {
   border: none;
   width: 80%;
   height: 40px;
   border-radius: 10px;
   font-size: 16px;
   transition: background-color 0.15s;
+}
+
+#submit {
+  width: 100%;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 5px;
+  height: 50px;
 }
 
 .not-read-btn {
@@ -163,11 +190,13 @@ form,
   cursor: pointer;
 }
 
-.read-btn {
+.read-btn,
+#submit {
   background-color: rgb(152, 255, 138);
 }
 
-.read-btn:hover {
+.read-btn:hover,
+#submit:hover {
   background-color: rgb(140, 236, 102);
   cursor: pointer;
 }
@@ -210,6 +239,10 @@ form,
 #add-book:hover {
   cursor: pointer;
   background-color: rgb(224, 224, 224);
+}
+
+.read-it {
+  font-size: 20px;
 }
 
 .active {
