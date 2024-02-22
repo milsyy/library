@@ -20,6 +20,9 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 auth.languageCode = "en";
 const provider = new GoogleAuthProvider();
+provider.setCustomParameters({
+  prompt: "select_account",
+});
 
 const login = document.querySelector("#login");
 const account = document.querySelector("#account");
@@ -72,6 +75,7 @@ const userSignOut = async () => {
     logout.style.display = "none";
     localStorage.removeItem("user");
   });
+  googleSignInClient.signOut();
 };
 
 const getItemsFromStorage = (item) => {
