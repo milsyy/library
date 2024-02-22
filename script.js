@@ -43,20 +43,30 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
+const getUser = () => {
+  let userFromStorage = getItemsFromStorage("user");
+
+  if (userFromStorage) {
+    login.style.display = "none";
+    account.style.display = "block";
+    logout.style.display = "block";
+  }
+};
+
 const displayBooks = () => {
-  let booksFromStorage = getBooksFromStorage();
+  let booksFromStorage = getItemsFromStorage("books");
 
   booksFromStorage.forEach((book) => {
     addBookLibrary(book);
   });
 };
 
-const getBooksFromStorage = () => {
+const getItemsFromStorage = (item) => {
   let booksFromStorage;
-  if (localStorage.getItem("books") === null) {
+  if (localStorage.getItem(item) === null) {
     booksFromStorage = [];
   } else {
-    booksFromStorage = JSON.parse(localStorage.getItem("books"));
+    booksFromStorage = JSON.parse(localStorage.getItem(item));
   }
   return booksFromStorage;
 };
@@ -67,6 +77,7 @@ const loginToGoogle = async () => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const user = result.user;
       userEmail = user.email;
+      localStorage.setItem("user", JSON.stringify(userEmail));
       login.style.display = "none";
       account.style.display = "block";
       logout.style.display = "block";
@@ -193,7 +204,7 @@ const bookClick = (e) => {
 };
 
 const updateStorageItem = (book) => {
-  let storageBooks = getBooksFromStorage();
+  let storageBooks = getItemsFromStorage("books");
 
   let objIndex = storageBooks.findIndex(
     (obj) => `"${obj.title}"` === book.firstChild.textContent
@@ -207,7 +218,7 @@ const updateStorageItem = (book) => {
 };
 
 const removeItemFromStorage = (book) => {
-  let storageBooks = getBooksFromStorage();
+  let storageBooks = getItemsFromStorage("books");
 
   storageBooks = storageBooks.filter((i) => {
     let title = `"${i.title}"`;
@@ -225,3 +236,4 @@ login.addEventListener("click", loginToGoogle);
 nav.addEventListener("click", navEvent);
 containerThree.addEventListener("click", bookClick);
 document.addEventListener("DOMContentLoaded", displayBooks);
+document.addEventListener("DOMContentLoaded", getUser);
