@@ -28,8 +28,11 @@ const containerThree = document.querySelector("#container-three");
 const overlayDiv = document.querySelector("#overlay");
 const form = document.querySelector("form");
 const nav = document.querySelector("#nav-container");
+const accountBg = document.querySelector("#account-bg");
 
 let myLibrary = [];
+let userEmail;
+let accountDone = false;
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -43,6 +46,7 @@ const loginToGoogle = () => {
     .then((result) => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const user = result.user;
+      userEmail = user.email;
       login.style.display = "none";
       account.style.display = "block";
       logout.style.display = "block";
@@ -59,14 +63,17 @@ const navEvent = (e) => {
     account.style.display = "none";
     logout.style.display = "none";
   } else if (e.target === account) {
-    getUser();
+    accountBg.style.display = "flex";
+    if (!accountDone) {
+      const acc = document.createElement("p");
+      const div = document.createElement("div");
+      div.classList.add("account-class");
+      acc.textContent = `Logged in as: ${userEmail}`;
+      div.appendChild(acc);
+      accountBg.appendChild(div);
+      accountDone = true;
+    }
   }
-};
-
-const getUser = async () => {
-  try {
-    const loginData = await fetch("");
-  } catch {}
 };
 
 const addBookPress = (e) => {
@@ -136,6 +143,17 @@ const removeOverlay = (e) => {
   }
 };
 
+const removeAcc = (e) => {
+  console.log(e.target.classList);
+  if (
+    !e.target.classList.contains("account-class") &&
+    !e.target.parentElement.classList.contains("account-class")
+  ) {
+    accountBg.style.display = "none";
+  }
+};
+
+accountBg.addEventListener("click", removeAcc);
 containerTwo.addEventListener("click", addBookPress);
 form.addEventListener("submit", formSubmitted);
 overlayDiv.addEventListener("click", removeOverlay);
