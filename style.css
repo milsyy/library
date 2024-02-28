@@ -2,6 +2,7 @@ body {
   margin: 0px;
   padding: 0px;
   background-color: rgb(240, 240, 240);
+  color: black;
 }
 
 nav {
@@ -117,7 +118,7 @@ form,
   border: none;
   border-radius: 10px;
   height: 45px;
-  width: 175px;
+  width: 200px;
   font-size: 25px;
   font-weight: bold;
   display: flex;
