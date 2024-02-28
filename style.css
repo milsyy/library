@@ -2,7 +2,6 @@ body {
   margin: 0px;
   padding: 0px;
   background-color: rgb(240, 240, 240);
-  color: black;
 }
 
 nav {
@@ -111,6 +110,7 @@ button,
 form,
 .account-class {
   font-family: "DM Sans", sans-serif;
+  color: black;
 }
 
 #add-book {
@@ -265,6 +265,9 @@ form,
   }
   .book {
     width: 100%;
+  }
+  #add-book {
+    font-size: 19px;
   }
 }
 
